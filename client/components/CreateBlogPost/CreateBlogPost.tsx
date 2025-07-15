@@ -59,7 +59,7 @@ const CreateBlogPost = () => {
         onSubmit={handleSubmit(formSubmit)}
         className="flex flex-col items-center justify-center"
       >
-        <div className="h-full bg-white w-[700px] mx-auto rounded-xl shadow-md">
+        <div className="h-full bg-white w-full lg:w-[700px] mx-auto rounded-xl shadow-md">
           <AddBlogDetails />
           <Controller
             name="content"

@@ -8,9 +8,12 @@ import React from "react";
 import { Badge } from "../../ui/badge";
 import { Button } from "../../ui/button";
 import CreateNewBtn from "./CreateNewBtn";
+import Loader from "../Loader/Loader";
+import { useUserDetails } from "@/components/Auth/useUserDetailsHook";
 
 const BlogCards = ({ cards }: { cards: string }) => {
   const { data } = useFetchAllBlogs();
+  const { isSignedIn } = useUserDetails();
   const [imageErrors, setImageErrors] = React.useState<{
     [key: number]: boolean;
   }>({});
@@ -31,9 +34,11 @@ const BlogCards = ({ cards }: { cards: string }) => {
         </p>
       </div>
       {/* create new */}
-      <div className="mb-5">
-        <CreateNewBtn />
-      </div>
+      {isSignedIn && (
+        <div className="mb-5">
+          <CreateNewBtn />
+        </div>
+      )}
       {/* Blog Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
         {data && data.length > 0 ? (
@@ -102,9 +107,9 @@ const BlogCards = ({ cards }: { cards: string }) => {
             );
           })
         ) : (
-          <p className="col-span-3 h-[60vh] flex items-center justify-center text-gray-500">
-            No blogs found.
-          </p>
+          <div className="col-span-3 flex items-center justify-center h-[60vh]">
+            <Loader />
+          </div>
         )}
       </div>
       {cards === "home" && (

@@ -5,7 +5,12 @@ export const useUserDetails = () => {
 
   const userDetails = {
     id: user?.id || "",
-    name: user?.fullName || user?.username || user?.firstName || "",
+    name:
+      user?.fullName ||
+      user?.username ||
+      user?.firstName ||
+      user?.lastName ||
+      "",
     email: user?.emailAddresses?.[0]?.emailAddress || "",
     image: user?.imageUrl || "",
     isSignedIn,

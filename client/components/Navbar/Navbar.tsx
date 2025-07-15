@@ -33,8 +33,8 @@ const Navbar = () => {
       </div>
 
       {/* mobile navbar */}
-      <div className="lg:hidden flex items-center gap-5">
-        <CreateNewBtn />
+      <div className="lg:hidden flex items-center gap-2">
+        {isSignedIn ? <CreateNewBtn /> : <AuthBtns />}
         <MobileNavbar />
       </div>
     </div>

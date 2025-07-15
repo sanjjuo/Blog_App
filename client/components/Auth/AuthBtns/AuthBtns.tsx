@@ -4,7 +4,7 @@ import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 const AuthBtns = () => {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-1 lg:gap-3">
       <SignedOut>
         <SignInButton>
           <Button className="bg-black border hover:border-black rounded-full font-medium text-sm hover:bg-white hover:text-black">

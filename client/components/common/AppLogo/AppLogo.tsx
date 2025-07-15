@@ -10,7 +10,7 @@ export const AppLogo = ({ type }: { type: string }) => {
         <span
           className={cn(
             "font-extrabold uppercase tracking-tighter font-['var(--font-app-logo)']",
-            type === "about-page" ? "text-9xl " : "text-4xl",
+            type === "about-page" ? "text-9xl " : "text-2xl lg:text-4xl",
             "text-black"
           )}
         >
@@ -20,7 +20,7 @@ export const AppLogo = ({ type }: { type: string }) => {
           <AppIcon
             strokeWidth={2}
             className={cn(
-              type === "about-page" ? "w-32 h-32" : "w-10 h-10",
+              type === "about-page" ? "w-32 h-32" : "w-8 h-8 lg:w-10 lg:h-10",
               "stroke-black"
             )}
           />
