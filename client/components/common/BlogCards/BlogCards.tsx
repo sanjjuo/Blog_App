@@ -1,15 +1,15 @@
 "use client";
+import { useUserDetails } from "@/components/Auth/useUserDetailsHook";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useFetchAllBlogs } from "@/services/reactQueryService";
-import { Eye, Plus } from "lucide-react";
-import { Badge } from "../../ui/badge";
+import { Eye } from "lucide-react";
 import Image from "next/image";
-import React from "react";
-import { Button } from "../../ui/button";
 import Link from "next/link";
+import React from "react";
+import { Badge } from "../../ui/badge";
+import { Button } from "../../ui/button";
 import CreateNewBtn from "./CreateNewBtn";
 import { useUser } from "@clerk/nextjs";
-import { useUserDetails } from "@/components/Auth/useUserDetailsHook";
 
 const BlogCards = ({ cards }: { cards: string }) => {
   const { data } = useFetchAllBlogs();
@@ -21,7 +21,8 @@ const BlogCards = ({ cards }: { cards: string }) => {
     setImageErrors((prev) => ({ ...prev, [index]: true }));
   };
 
-  const { name, image } = useUserDetails();
+  const userDetails = useUserDetails();
+  console.log(userDetails.email);
 
   return (
     <section className="py-10">
@@ -40,15 +41,18 @@ const BlogCards = ({ cards }: { cards: string }) => {
       </div>
       {/* Blog Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
-        {data &&
+        {data && data.length > 0 ? (
           (cards === "home" ? data.slice(0, 3) : data).map((item, index) => {
             const imageId = 100 + (index % 100);
             const imageSrc = `https://picsum.photos/id/${imageId}/1000/400`;
 
             return (
-              <Link href={`/blog/blog-details/${item.id}`} key={item.id}>
-                <Card className="flex flex-col overflow-hidden justify-between cursor-pointer rounded-tl-3xl rounded-br-3xl group">
-                  <CardContent className="p-0 flex-1">
+              <Card
+                key={item.id}
+                className="flex flex-col overflow-hidden justify-between cursor-pointer rounded-tl-3xl rounded-br-3xl group"
+              >
+                <CardContent className="p-0 flex-1">
+                  <Link href={`/blog/blog-details/${item.id}`}>
                     <div className="relative w-full h-[200px] rounded-tl-3xl overflow-hidden m-0">
                       {imageErrors[index] ? (
                         <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm">
@@ -67,50 +71,54 @@ const BlogCards = ({ cards }: { cards: string }) => {
                         />
                       )}
                     </div>
+                  </Link>
+                  <div className="px-5">
+                    <h1 className="text-center font-bold text-2xl first-letter:uppercase mt-2">
+                      {item.title}
+                    </h1>
+                    <p
+                      className="text-xs first-letter:uppercase line-clamp-5 mt-2"
+                      dangerouslySetInnerHTML={{ __html: item.content }}
+                    />
 
-                    <div className="px-5">
-                      <h1 className="text-center font-bold text-2xl first-letter:uppercase mt-2">
-                        {item.title}
-                      </h1>
-                      <p
-                        className="text-xs first-letter:uppercase line-clamp-5 mt-2"
-                        dangerouslySetInnerHTML={{ __html: item.content }}
+                    <ul className="flex items-center gap-2 flex-wrap mt-5">
+                      {item?.skills?.map((tech) => (
+                        <li key={tech}>
+                          <Badge className="rounded-full w-auto h-8">
+                            {tech}
+                          </Badge>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+
+                <CardFooter className="px-5 mt-5 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {userDetails.image && (
+                      <img
+                        src={userDetails.image}
+                        alt="user-image"
+                        width={30}
+                        height={30}
+                        className="rounded-full"
                       />
-
-                      <ul className="flex items-center gap-2 flex-wrap mt-5">
-                        {item?.skills?.map((tech) => (
-                          <li key={tech}>
-                            <Badge className="rounded-full w-auto h-8">
-                              {tech}
-                            </Badge>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </CardContent>
-
-                  <CardFooter className="px-5 mt-5 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      {image && (
-                        <img
-                          src={image}
-                          alt="user-image"
-                          width={30}
-                          height={30}
-                          className="rounded-full"
-                        />
-                      )}
-                      <p className="text-sm">{name}</p>
-                    </div>
-                    <div className="flex items-center justify-end gap-1 text-blue-500 capitalize">
-                      <Eye className="w-4 h-4" />
-                      <span className="text-xs">{item.visibility}</span>
-                    </div>
-                  </CardFooter>
-                </Card>
-              </Link>
+                    )}
+                    <p className="text-sm">
+                      {userDetails.name || userDetails.email}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-end gap-1 text-blue-500 capitalize">
+                    <Eye className="w-4 h-4" />
+                    <span className="text-xs">{item.visibility}</span>
+                  </div>
+                </CardFooter>
+              </Card>
             );
-          })}
+          })
+        ) : (
+          <p className="text-center text-gray-500">No blogs found.</p>
+        )}
       </div>
       {cards === "home" && (
         <Link href="/blog" className="flex items-center justify-center mt-10">

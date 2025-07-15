@@ -4,7 +4,9 @@ export const useUserDetails = () => {
   const { user, isSignedIn, isLoaded } = useUser();
 
   const userDetails = {
-    name: user?.fullName || "",
+    id: user?.id || "",
+    name: user?.fullName || user?.username || user?.firstName || "",
+    email: user?.emailAddresses?.[0]?.emailAddress || "",
     image: user?.imageUrl || "",
     isSignedIn,
     isLoaded,

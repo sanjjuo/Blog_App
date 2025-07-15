@@ -13,4 +13,5 @@ interface BlogPostFormValues {
   skills: string[];
   visibility: "public" | "private";
   content: string;
+  postedBy: string;
 }

@@ -11,6 +11,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useAddBlog } from "@/services/reactQueryService";
+import { useUserDetails } from "../Auth/useUserDetailsHook";
 
 // Infer type from schema
 type BlogPostFormData = z.infer<typeof blogPostSchema>;
@@ -23,19 +24,32 @@ const CreateBlogPost = () => {
       skills: [],
       visibility: "private",
       content: "",
+      postedBy: "",
     },
   });
 
   const { handleSubmit, control } = form;
   const router = useRouter();
   const { mutate } = useAddBlog();
+  const { name, email } = useUserDetails();
 
   const formSubmit = (data: BlogPostFormData) => {
-    console.log("Form data:", data);
-    router.push("/blog");
-    mutate(data, {
+    // if (!userDetails?.name) {
+    //   toast.error("User not logged in.");
+    //   return;
+    // }
+
+    const formDataWithUser = {
+      ...data,
+      postedBy: name || email,
+    };
+
+    console.log("Form data:", formDataWithUser);
+
+    mutate(formDataWithUser, {
       onSuccess: () => {
         toast.success("Post is created");
+        router.push("/blog");
       },
     });
   };
