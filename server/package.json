@@ -5,9 +5,9 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "npx json-server --watch db.json --port $PORT"
+    "start": "node server.js"
   },
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
