@@ -89,7 +89,10 @@ const BlogCards = ({ cards }: { cards: string }) => {
                 </CardContent>
 
                 <CardFooter className="px-5 mt-5 flex items-center justify-between">
-                  <p className="text-sm">Posted by {item.postedBy}</p>
+                  <div className="flex items-center gap-1 text-xs">
+                    <span className="text-gray-400">Posted by</span>
+                    <span className="font-bold">{item.postedBy}</span>
+                  </div>
                   <div className="flex items-center justify-end gap-1 text-blue-500 capitalize">
                     <Eye className="w-4 h-4" />
                     <span className="text-xs">{item.visibility}</span>
