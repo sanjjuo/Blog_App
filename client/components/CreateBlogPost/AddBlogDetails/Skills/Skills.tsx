@@ -35,7 +35,15 @@ const Skills = () => {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-gray-500">No skills added yet.</p>
+          <div>
+            {errors.skills && (
+              <div className="text-red-500 text-sm mb-1">
+                {errors.skills.message?.toString() ||
+                  "Please add at least one skill."}
+              </div>
+            )}
+            <p className="text-sm text-gray-500">No skills added yet.</p>
+          </div>
         )}
       </div>
     </div>

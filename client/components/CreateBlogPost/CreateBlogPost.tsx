@@ -46,7 +46,7 @@ const CreateBlogPost = () => {
         toast.success("Post is created");
         router.push("/blog");
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         toast.error("Failed to create post");
         console.error("Mutation error:", error);
       },

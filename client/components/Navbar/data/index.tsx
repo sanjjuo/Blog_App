@@ -4,7 +4,7 @@ import YouTubeIcon from "@/components/svg/YoutubeIcon";
 
 export const navbarLinks = [
   { id: 1, label: "Home", href: "/" },
-  { id: 2, label: "blog", href: "/blog" },
+  { id: 2, label: "blogs", href: "/blog" },
   { id: 3, label: "about", href: "/about" },
   { id: 4, label: "gallery", href: "/gallery" },
 ];

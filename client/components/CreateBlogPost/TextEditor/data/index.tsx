@@ -1,9 +1,7 @@
 import { Editor } from "@tiptap/react";
 import {
   AlignCenter,
-  AlignJustify,
   AlignLeft,
-  AlignRight,
   Bold,
   Heading,
   Italic,

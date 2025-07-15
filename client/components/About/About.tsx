@@ -22,19 +22,20 @@ const About = () => {
           <h5 className="font-bold mb-3">Readers can discover:</h5>
           <ul className="list-disc space-y-5 text-gray-600 text-sm">
             <li>
-              "Hands-on project breakdowns covering structure, logic, and
-              implementation"
+              &quot;Hands-on project breakdowns covering structure, logic, and
+              implementation&quot;
             </li>
             <li>
-              "Design and development best practices applied to real use cases "
+              &quot;Design and development best practices applied to real use
+              cases &quot;
             </li>
             <li>
-              "Reusable code snippets, UI components, and architectural
-              patterns"
+              &quot;Reusable code snippets, UI components, and architectural
+              patterns&quot;
             </li>
             <li>
-              "Responsive layouts and thoughtful interactions designed with user
-              experience in mind"
+              &quot;Responsive layouts and thoughtful interactions designed with
+              user experience in mind&quot;
             </li>
           </ul>
         </div>
@@ -53,9 +54,7 @@ const About = () => {
 
       {/* Tech Stack Badges */}
       <div>
-        <h2 className="text-xl font-semibold mb-4 text-gray-700">
-          Tech I Use
-        </h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-700">Tech I Use</h2>
         <div className="flex justify-center flex-wrap gap-3 mb-10">
           {[
             "React",

@@ -1,6 +1,4 @@
 import { socialMediaIcons } from "@/components/Navbar/data";
-import { cn } from "@/lib/utils";
-import React from "react";
 
 const SocialMediaIcons = () => {
   return (
