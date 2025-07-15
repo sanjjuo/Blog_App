@@ -34,11 +34,6 @@ const CreateBlogPost = () => {
   const { name, email } = useUserDetails();
 
   const formSubmit = (data: BlogPostFormData) => {
-    // if (!userDetails?.name) {
-    //   toast.error("User not logged in.");
-    //   return;
-    // }
-
     const formDataWithUser = {
       ...data,
       postedBy: name || email,

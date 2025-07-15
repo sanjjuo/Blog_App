@@ -6,7 +6,7 @@
       "skills": ["React", "Tailwind CSS", "API"],
       "visibility": "public",
       "content": "This project is a real-time weather application that displays current weather conditions, forecasts, and location-based weather updates. It integrates with OpenWeatherMap API and features a clean, responsive UI. Users can search for cities, toggle between Celsius and Fahrenheit, and view 7-day forecasts. Future updates include location tracking, dark mode, and air quality metrics.",
-      "postBy": "sanjeed"
+      "postedBy": "sanjeed"
     }
   ]
 }

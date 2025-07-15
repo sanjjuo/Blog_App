@@ -1,5 +1,4 @@
 "use client";
-import { useUserDetails } from "@/components/Auth/useUserDetailsHook";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useFetchAllBlogs } from "@/services/reactQueryService";
 import { Eye } from "lucide-react";
@@ -9,7 +8,6 @@ import React from "react";
 import { Badge } from "../../ui/badge";
 import { Button } from "../../ui/button";
 import CreateNewBtn from "./CreateNewBtn";
-import { useUser } from "@clerk/nextjs";
 
 const BlogCards = ({ cards }: { cards: string }) => {
   const { data } = useFetchAllBlogs();
@@ -20,9 +18,6 @@ const BlogCards = ({ cards }: { cards: string }) => {
   const handleImageError = (index: number) => {
     setImageErrors((prev) => ({ ...prev, [index]: true }));
   };
-
-  const userDetails = useUserDetails();
-  console.log(userDetails.email);
 
   return (
     <section className="py-10">
@@ -94,20 +89,7 @@ const BlogCards = ({ cards }: { cards: string }) => {
                 </CardContent>
 
                 <CardFooter className="px-5 mt-5 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {userDetails.image && (
-                      <img
-                        src={userDetails.image}
-                        alt="user-image"
-                        width={30}
-                        height={30}
-                        className="rounded-full"
-                      />
-                    )}
-                    <p className="text-sm">
-                      {userDetails.name || userDetails.email}
-                    </p>
-                  </div>
+                  <p className="text-sm">Posted by {item.postedBy}</p>
                   <div className="flex items-center justify-end gap-1 text-blue-500 capitalize">
                     <Eye className="w-4 h-4" />
                     <span className="text-xs">{item.visibility}</span>
