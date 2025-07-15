@@ -116,16 +116,17 @@ const BlogCards = ({ cards }: { cards: string }) => {
           </div>
         )}
       </div>
-      {cards === "home" && (
-        <Link href="/blog" className="flex items-center justify-center mt-10">
-          <Button
-            variant="outline"
-            className="border-2 bg-transparent border-black"
-          >
-            View more
-          </Button>
-        </Link>
-      )}
+      {cards === "home" ||
+        ((data?.length ?? 0) > 0 && (
+          <Link href="/blog" className="flex items-center justify-center mt-10">
+            <Button
+              variant="outline"
+              className="border-2 bg-transparent border-black"
+            >
+              View more
+            </Button>
+          </Link>
+        ))}
     </section>
   );
 };
