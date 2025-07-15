@@ -102,7 +102,9 @@ const BlogCards = ({ cards }: { cards: string }) => {
             );
           })
         ) : (
-          <p className="text-center text-gray-500">No blogs found.</p>
+          <p className="col-span-3 h-[60vh] flex items-center justify-center text-gray-500">
+            No blogs found.
+          </p>
         )}
       </div>
       {cards === "home" && (
