@@ -3,66 +3,42 @@
     {
       "id": "1",
       "title": "Weather App Dashboard",
-      "skills": [
-        "React",
-        "Tailwind CSS",
-        "API"
-      ],
+      "skills": ["React", "Tailwind CSS", "API"],
       "visibility": "public",
       "content": "This project is a real-time weather application that displays current weather conditions, forecasts, and location-based weather updates. It integrates with OpenWeatherMap API and features a clean, responsive UI. Users can search for cities, toggle between Celsius and Fahrenheit, and view 7-day forecasts. Future updates include location tracking, dark mode, and air quality metrics."
     },
     {
       "id": "2",
       "title": "Inventory Management System",
-      "skills": [
-        "Vue",
-        "Node.js",
-        "MongoDB"
-      ],
+      "skills": ["Vue", "Node.js", "MongoDB"],
       "visibility": "private",
       "content": "An enterprise-grade inventory management platform that allows users to track stock, manage suppliers, and generate reports. The backend is powered by Express and MongoDB, while the frontend utilizes Vue 3 with Tailwind CSS. The system includes role-based access control and real-time updates with WebSockets."
     },
     {
       "id": "3",
       "title": "Fitness Tracker",
-      "skills": [
-        "React Native",
-        "Firebase",
-        "GraphQL"
-      ],
+      "skills": ["React Native", "Firebase", "GraphQL"],
       "visibility": "public",
       "content": "This mobile app helps users track workouts, set fitness goals, and monitor progress with visual charts. Built with React Native and Firebase, it features Google Fit integration and real-time data sync. Users can log activities, receive daily reminders, and view personalized progress graphs."
     },
     {
       "id": "cff9",
       "title": "E-Commerce Storefront",
-      "skills": [
-        "Next.js",
-        "Stripe",
-        "Tailwind"
-      ],
+      "skills": ["Next.js", "Stripe", "Tailwind"],
       "visibility": "public",
       "content": "A complete e-commerce platform with product listings, checkout, and payment integration using Stripe. Built using Next.js for SSR and Tailwind CSS for styling. The site supports cart persistence, dynamic filtering, and admin product management. Future enhancements include reviews and analytics dashboards."
     },
     {
       "id": "954e",
       "title": "Real-Time Chat App",
-      "skills": [
-        "Socket.IO",
-        "Spring Boot",
-        "React"
-      ],
+      "skills": ["Socket.IO", "Spring Boot", "React"],
       "visibility": "private",
       "content": "A modern chat application with support for private and group messaging. The frontend is developed using React and the backend uses Spring Boot and WebSockets for real-time communication. Features include user authentication, message history, read receipts, and emoji support."
     },
     {
       "id": "8aa2",
       "title": "AI Recipe Generator",
-      "skills": [
-        "OpenAI API",
-        "Next.js",
-        "Tailwind"
-      ],
+      "skills": ["OpenAI API", "Next.js", "Tailwind"],
       "visibility": "public",
       "content": "This project uses the OpenAI API to generate creative and custom recipes based on user input. Users can type in ingredients they have, and the app suggests meal ideas. It's built with Next.js and styled using Tailwind. Features include saving favorite recipes and ingredient-based filtering."
     },
@@ -84,28 +60,21 @@
     {
       "id": "5b86",
       "title": "Abdallah Abu Sidu",
-      "skills": [
-        "next js",
-        "js"
-      ],
+      "skills": ["next js", "js"],
       "visibility": "public",
       "content": "Himynamei edsadasdsa asdasd asdasdasdasdsadaskldasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasda"
     },
     {
       "id": "16ff",
       "title": "dfgrtgrgvrtvge",
-      "skills": [
-        "geghewghw3r"
-      ],
+      "skills": ["geghewghw3r"],
       "visibility": "public",
       "content": "<p>gwferghwr</p><h2>gfhr</h2><p><strong>hrwhrehreh</strong></p><p><em>vfgghrt5yhrteh</em></p>"
     },
     {
       "id": "7477",
       "title": "fgdghfgghrehrteh",
-      "skills": [
-        "egwghwhrghrgh"
-      ],
+      "skills": ["egwghwhrghrgh"],
       "visibility": "private",
       "content": "<p><strong>gwhwrghrghrehgreghrththrehergrjgdshgbvdyhgvsdgvsdgvsdygvdagvdyvdsvydvygfvfvadilgvas;dwigo'ufg'uafuegb;asihvdasjvsdvbh;sdvsdvbksdbsfb     fv dfvbdgbfdb</strong></p><p><strong>f</strong></p><p></p><p></p><p><strong>werfwetg rhy53y</strong></p>"
     }
