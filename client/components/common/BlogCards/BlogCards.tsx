@@ -106,6 +106,10 @@ const BlogCards = ({ cards }: { cards: string }) => {
               </Card>
             );
           })
+        ) : data?.length === 0 ? (
+          <div className="col-span-3 flex items-center justify-center h-[60vh]">
+            <p className="text-gray-500 text-sm">No blogs found</p>
+          </div>
         ) : (
           <div className="col-span-3 flex items-center justify-center h-[60vh]">
             <Loader />
