@@ -18,6 +18,11 @@ body {
   pointer-events: none;
 }
 
+.ProseMirror a {
+  color: #1d4ed8; /* Tailwind blue-700 */
+  text-decoration: underline;
+}
+
 /* for text editor */
 .editor h1 {
   @apply text-4xl font-bold;

@@ -4,6 +4,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import TextAlign from "@tiptap/extension-text-align";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Link from "@tiptap/extension-link";
 import React from "react";
 import HeaderEditor from "./HeaderEditor";
 
@@ -18,6 +19,11 @@ const Tiptap = ({ editorContent, onChange, errors }: TiptapProps) => {
     extensions: [
       StarterKit,
       Highlight,
+      Link.configure({
+        HTMLAttributes: {
+          class: "text-blue-700 underline",
+        },
+      }),
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
