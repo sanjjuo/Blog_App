@@ -27,10 +27,10 @@ const Tiptap = ({ editorContent, onChange, errors }: TiptapProps) => {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
-      Placeholder.configure({
-        placeholder: "Start typing your content here...",
-        emptyEditorClass: "is-editor-empty",
-      }),
+      // Placeholder.configure({
+      //   placeholder: "Start typing your content here...",
+      //   emptyEditorClass: "is-editor-empty",
+      // }),
     ],
     content: editorContent || "",
     onUpdate: ({ editor }) => {
@@ -39,7 +39,7 @@ const Tiptap = ({ editorContent, onChange, errors }: TiptapProps) => {
     },
     editorProps: {
       attributes: {
-        class: "h-full rounded-xl p-5 focus:!outline-none",
+        class: "h-[280px] overflow-y-auto rounded-xl p-5 focus:!outline-none",
       },
     },
     immediatelyRender: false,
@@ -52,7 +52,7 @@ const Tiptap = ({ editorContent, onChange, errors }: TiptapProps) => {
   }, [editorContent, editor]);
 
   return (
-    <div className="space-y-5 h-[400px] p-5">
+    <div className="space-y-5 h-full p-5">
       <HeaderEditor editor={editor} />
       {errors && <div className="text-red-500">{errors}</div>}
       <EditorContent editor={editor} className="editor" />

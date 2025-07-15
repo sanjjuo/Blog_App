@@ -61,17 +61,19 @@ const CreateBlogPost = () => {
       >
         <div className="h-full bg-white w-full lg:w-[700px] mx-auto rounded-xl shadow-md">
           <AddBlogDetails />
-          <Controller
-            name="content"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Tiptap
-                editorContent={field.value}
-                onChange={field.onChange}
-                errors={fieldState?.error?.message}
-              />
-            )}
-          />
+          <div className="h-[400px]">
+            <Controller
+              name="content"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Tiptap
+                  editorContent={field.value}
+                  onChange={field.onChange}
+                  errors={fieldState?.error?.message}
+                />
+              )}
+            />
+          </div>
         </div>
         <Button type="submit" className="w-72 rounded-3xl h-12 mt-10">
           Publish post

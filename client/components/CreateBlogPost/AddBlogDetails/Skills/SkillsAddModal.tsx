@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
 import React from "react";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 
 const SkillsAddModal = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -28,13 +28,27 @@ const SkillsAddModal = () => {
     name: "skills",
   });
 
+  const skills = useWatch({
+    control,
+    name: "skills",
+  });
+
   const handleSaveSkill = () => {
-    if (skillInput.trim()) {
-      append(skillInput.trim());
-      setSkillInput("");
-      setModalOpen(false);
-      console.log("skills saved");
+    const trimmedSkill = skillInput.trim();
+    if (!trimmedSkill) return;
+
+    // Prevent duplicates (case insensitive)
+    const isDuplicate = skills?.some(
+      (s: any) => s.toLowerCase() === trimmedSkill.toLowerCase()
+    );
+    if (isDuplicate) {
+      alert("This skill has already been added.");
+      return;
     }
+    append(trimmedSkill);
+    setSkillInput("");
+    setModalOpen(false);
+    console.log("Skill saved");
   };
 
   return (

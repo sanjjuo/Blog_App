@@ -26,7 +26,7 @@ const BlogCards = ({ cards }: { cards: string }) => {
     <section className="py-10">
       {/* Heading and Description */}
       <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-bold">Latest Blog Projects</h2>
+        <h2 className="text-2xl md:text-3xl font-bold">Latest Blogs</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mt-2 text-sm md:text-base">
           Browse a curated selection of blog posts showcasing unique coding
           projects, each built with a focus on clean design, modern tools, and

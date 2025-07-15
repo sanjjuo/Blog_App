@@ -6,7 +6,7 @@ const Gallery = () => {
     <section className="px-4 py-8">
       {/* Heading */}
       <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2">Project Gallery</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2">Gallery</h2>
         <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
           Explore a curated selection of visuals from recent projects. This
           gallery showcases responsive layouts, creative designs, and attention

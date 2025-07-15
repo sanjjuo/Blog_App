@@ -2,12 +2,14 @@
 import { Badge } from "@/components/ui/badge";
 import { socialMediaIcons } from "../Navbar/data";
 import { AppLogo } from "../common/AppLogo/AppLogo";
+import Link from "next/link";
+import { Partnership } from "./data";
 
 const About = () => {
   return (
     <section className="max-w-5xl mx-auto px-6 py-12 text-center space-y-10">
       {/* Heading */}
-      <h1 className="text-4xl font-bold text-gray-800">About This Blog</h1>
+      <h1 className="text-4xl font-bold text-gray-800">About Projex</h1>
       <div className="space-y-10">
         <p className="text-gray-600 text-sm">
           Welcome to our coding project blog — a platform built to document,
@@ -54,19 +56,16 @@ const About = () => {
 
       {/* Tech Stack Badges */}
       <div>
-        <h2 className="text-xl font-semibold mb-4 text-gray-700">Tech I Use</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-700">
+          Partnership with
+        </h2>
         <div className="flex justify-center flex-wrap gap-3 mb-10">
-          {[
-            "React",
-            "Next.js",
-            "TypeScript",
-            "Tailwind",
-            "React Query",
-            "Node.js",
-          ].map((tech) => (
-            <Badge key={tech} className="rounded-full px-4 py-2">
-              {tech}
-            </Badge>
+          {Partnership.map((tech) => (
+            <Link key={tech.id} href={tech.href} target="_blank">
+              <Badge className="rounded-full px-4 py-2 text-base tracking-wider cursor-pointer">
+                {tech.label}
+              </Badge>
+            </Link>
           ))}
         </div>
 
