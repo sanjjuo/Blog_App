@@ -11,7 +11,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useAddBlog } from "@/services/reactQueryService";
-import { useUserDetails } from "../Auth/useUserDetailsHook";
+import { useUserDetails } from "../../hooks/UserDetailsHook/useUserDetailsHook";
 
 // Infer type from schema
 type BlogPostFormData = z.infer<typeof blogPostSchema>;

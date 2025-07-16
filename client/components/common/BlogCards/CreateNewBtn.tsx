@@ -5,10 +5,7 @@ import React from "react";
 
 const CreateNewBtn = () => {
   return (
-    <Link
-      href="/blog/create-new-blog"
-      className="flex items-center justify-end"
-    >
+    <Link href="/blog/create-new-blog">
       <Button className="rounded-full w-10 h-10 p-0">
         <Plus className="w-10 h-10" />
       </Button>

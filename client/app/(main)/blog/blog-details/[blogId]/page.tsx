@@ -1,12 +1,13 @@
+import BlogDetailPage from "@/components/BlogDetailPage/BlogDetailPage";
 import React from "react";
 
 const BlogDetailsPage = async ({
   params,
 }: {
-  params: Promise<{ blogId: string }>;
+  params: Promise<{ blogId: number | string }>;
 }) => {
   const { blogId } = await params;
-  return <div>{blogId}</div>;
+  return <BlogDetailPage blogId={blogId} />;
 };
 
 export default BlogDetailsPage;

@@ -1,26 +1,40 @@
 "use client";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { useUserDetails } from "@/hooks/UserDetailsHook/useUserDetailsHook";
 import { useFetchAllBlogs } from "@/services/reactQueryService";
 import { Eye } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Badge } from "../../ui/badge";
 import { Button } from "../../ui/button";
-import CreateNewBtn from "./CreateNewBtn";
 import Loader from "../Loader/Loader";
-import { useUserDetails } from "@/components/Auth/useUserDetailsHook";
+import CreateNewBtn from "./CreateNewBtn";
+import MyBlogsBtn from "./MyBlogsBtn";
 
 const BlogCards = ({ cards }: { cards: string }) => {
   const { data } = useFetchAllBlogs();
-  const { isSignedIn } = useUserDetails();
+  const { isSignedIn, name } = useUserDetails();
   const [imageErrors, setImageErrors] = React.useState<{
     [key: number]: boolean;
   }>({});
+  const [showUserBlogs, setShowUserBlogs] = React.useState(false);
 
   const handleImageError = (index: number) => {
     setImageErrors((prev) => ({ ...prev, [index]: true }));
   };
+
+  const fetchUsersBlogs = () => {
+    setShowUserBlogs(!showUserBlogs); // show only user's blogs
+  };
+
+  // Filter blogs based on showUserBlogs flag
+  const filteredData = React.useMemo(() => {
+    if (!data) return null;
+    if (showUserBlogs) {
+      return data.filter((item) => item.postedBy === name);
+    }
+    return data;
+  }, [data, showUserBlogs, name]);
 
   return (
     <section className="py-10">
@@ -33,58 +47,44 @@ const BlogCards = ({ cards }: { cards: string }) => {
           practical solutions.
         </p>
       </div>
-      {/* create new */}
+
       {isSignedIn && (
-        <div className="mb-5">
+        <div className="flex items-center justify-between mb-5">
+          <MyBlogsBtn
+            fetchUsersBlogs={fetchUsersBlogs}
+            showUserBlogs={showUserBlogs}
+          />
           <CreateNewBtn />
         </div>
       )}
-      {/* Blog Cards Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
-        {data && data.length > 0 ? (
-          (cards === "home" ? data.slice(0, 3) : data).map((item, index) => {
-            const imageId = 100 + (index % 100);
-            const imageSrc = `https://picsum.photos/id/${imageId}/1000/400`;
 
-            return (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+        {Array.isArray(filteredData) && filteredData.length > 0 ? (
+          (cards === "home" ? filteredData.slice(0, 3) : filteredData).map(
+            (item) => (
               <Card
                 key={item.id}
-                className="flex flex-col overflow-hidden justify-between cursor-pointer rounded-tl-3xl rounded-br-3xl group"
+                className="flex flex-col overflow-hidden justify-between cursor-pointer rounded-tl-3xl rounded-br-3xl group p-5"
               >
                 <CardContent className="p-0 flex-1">
-                  <Link href={`/blog/blog-details/${item.id}`}>
-                    <div className="relative w-full h-[200px] rounded-tl-3xl overflow-hidden m-0">
-                      {imageErrors[index] ? (
-                        <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm">
-                          No image available
-                        </div>
-                      ) : (
-                        <Image
-                          src={imageSrc}
-                          alt="blog-image"
-                          width={1000}
-                          height={400}
-                          quality={100}
-                          onError={() => handleImageError(index)}
-                          style={{ objectFit: "cover" }}
-                          className="group-hover:scale-105 duration-500"
-                        />
-                      )}
-                    </div>
-                  </Link>
                   <div className="px-5">
-                    <h1 className="text-center font-bold text-2xl first-letter:uppercase mt-2">
+                    <h1 className="text-center font-bold text-xl lg:text-3xl first-letter:uppercase mt-2">
                       {item.title}
                     </h1>
                     <p
-                      className="text-xs first-letter:uppercase line-clamp-5 mt-2"
+                      className="text-xs first-letter:uppercase line-clamp-5 mt-8"
                       dangerouslySetInnerHTML={{ __html: item.content }}
                     />
-
+                    <Link
+                      href={`/blog/blog-details/${item.id}`}
+                      className="text-sm text-blue-500 hover:underline"
+                    >
+                      see more
+                    </Link>
                     <ul className="flex items-center gap-2 flex-wrap mt-5">
                       {item?.skills?.map((tech) => (
                         <li key={tech}>
-                          <Badge className="rounded-full w-auto h-8">
+                          <Badge className="rounded-full w-auto h-8 capitalize">
                             {tech}
                           </Badge>
                         </li>
@@ -94,7 +94,7 @@ const BlogCards = ({ cards }: { cards: string }) => {
                 </CardContent>
 
                 <CardFooter className="px-5 mt-5 flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-xs">
+                  <div className="flex items-center gap-2 text-xs">
                     <span className="text-gray-400">Posted by</span>
                     <span className="font-bold">{item.postedBy}</span>
                   </div>
@@ -104,9 +104,9 @@ const BlogCards = ({ cards }: { cards: string }) => {
                   </div>
                 </CardFooter>
               </Card>
-            );
-          })
-        ) : data?.length === 0 ? (
+            )
+          )
+        ) : Array.isArray(filteredData) && filteredData.length === 0 ? (
           <div className="col-span-3 flex items-center justify-center h-[60vh]">
             <p className="text-gray-500 text-sm">No blogs found</p>
           </div>
@@ -116,8 +116,10 @@ const BlogCards = ({ cards }: { cards: string }) => {
           </div>
         )}
       </div>
-      {cards === "home" ||
-        ((data?.length ?? 0) > 0 && (
+
+      {cards === "home" &&
+        (filteredData?.length ?? 3) > 3 &&
+        !showUserBlogs && (
           <Link href="/blog" className="flex items-center justify-center mt-10">
             <Button
               variant="outline"
@@ -126,7 +128,7 @@ const BlogCards = ({ cards }: { cards: string }) => {
               View more
             </Button>
           </Link>
-        ))}
+        )}
     </section>
   );
 };
